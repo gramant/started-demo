@@ -1,1 +1,1 @@
-INSERT INTO juser(id, email, enabled) VALUES('user-1', 'user1@mail.ru', true);
+INSERT INTO users(id, email, enabled) VALUES('user-1', 'user1@mail.ru', true);
