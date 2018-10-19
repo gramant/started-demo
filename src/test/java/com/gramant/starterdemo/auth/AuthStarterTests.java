@@ -28,7 +28,7 @@ public class AuthStarterTests {
     @Sql("/test-data/testcase-auth.sql")
     @WithMockCustomUser(id = "user1", email = "user1@mail.ru")
     public void givenAuthenticated_whenGettingProfile_thenOk() throws Exception {
-        mockMvc.perform(get("/api/auth/user"))
+        mockMvc.perform(get("/auth/profile"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("email").value("user1@mail.ru"));
     }
@@ -36,7 +36,7 @@ public class AuthStarterTests {
     @Test
     @Sql("/test-data/testcase-auth.sql")
     public void givenUnauthenticated_whenGettingProfile_thenNoContent() throws Exception {
-        mockMvc.perform(get("/api/auth/user"))
+        mockMvc.perform(get("/auth/profile"))
                 .andExpect(status().isNoContent());
     }
 }
