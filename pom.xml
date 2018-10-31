@@ -43,12 +43,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.gramant</groupId>
-            <artifactId>auth-starter</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
         </dependency>
@@ -75,7 +69,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.gramant.auth-starter</groupId>
+            <groupId>com.github.gramant</groupId>
             <artifactId>auth-starter</artifactId>
             <version>master-SNAPSHOT</version>
         </dependency>
