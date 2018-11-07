@@ -1,9 +1,9 @@
 package com.gramant.starterdemo.auth;
 
+import com.gramant.auth.adapters.rest.request.UserRegistrationRequest;
 import com.gramant.auth.app.ManageUser;
 import com.gramant.auth.app.Notifier;
 import com.gramant.auth.domain.event.UserCreatedEvent;
-import com.gramant.auth.ports.rest.request.UserRegistrationRequest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.EventListener;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.HashMap;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -33,7 +35,7 @@ public class AuthEventsTests {
     @Test
     public void givenListenerSetup_whenCreatingUser_thenEventFired() {
         assertFalse(flagger.flagged());
-        manageUser.add(new UserRegistrationRequest("test@mail.ru", "test-user", "password"));
+        manageUser.add(new UserRegistrationRequest("test@mail.ru", "test-user", "password", new HashMap<>()));
         assertTrue(flagger.flagged());
     }
 
