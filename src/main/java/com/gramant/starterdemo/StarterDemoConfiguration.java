@@ -60,6 +60,7 @@ public class StarterDemoConfiguration {
             if (additionalProperties.get("specialProp") == null) {
                 return ResponseEntity.badRequest().build();
             } else {
+                // process additional properties
                 manageUser.add(registrationRequest);
                 return ResponseEntity.ok().build();
             }
