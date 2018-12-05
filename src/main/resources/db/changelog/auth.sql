@@ -6,6 +6,7 @@ CREATE TABLE users (
   email VARCHAR(100) NOT NULL,
   password VARCHAR(1000),
   enabled BOOLEAN NOT NULL DEFAULT true,
+  non_locked BOOLEAN NOT NULL,
   last_login TIMESTAMP
 );
 

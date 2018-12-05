@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.gramant.auth.adapters.rest.handlers.CreateUserHandler;
 import com.gramant.auth.adapters.rest.request.UserRegistrationRequest;
 import com.gramant.auth.app.ManageUser;
 import com.gramant.auth.app.RoleProvider;
@@ -20,6 +19,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
 
@@ -28,6 +28,7 @@ import java.util.Collections;
 import java.util.Map;
 
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class StarterDemoConfiguration {
 
     @Bean
@@ -51,19 +52,5 @@ public class StarterDemoConfiguration {
         public void processUserCreatedEventSynchronously(UserCreatedEvent event) {
             // execute app logic processing user creation
         }
-    }
-
-    @Bean
-    public CreateUserHandler createUserHandler(ManageUser manageUser) {
-        return registrationRequest -> {
-            Map<String, String> additionalProperties = registrationRequest.getAdditionalProperties();
-            if (additionalProperties.get("specialProp") == null) {
-                return ResponseEntity.badRequest().build();
-            } else {
-                // process additional properties
-                manageUser.add(registrationRequest);
-                return ResponseEntity.ok().build();
-            }
-        };
     }
 }

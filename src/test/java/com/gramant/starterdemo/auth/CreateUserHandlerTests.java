@@ -22,17 +22,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 public class CreateUserHandlerTests {
 
-    @Autowired
-    private MockMvc mockMvc;
-
-    @MockBean
-    private ManageUser manageUser;
-
     @Test
-    public void whenCreatingWithoutRequiredProps_thenBadRequest() throws Exception {
-        mockMvc.perform(post("/auth/users")
-                .content("{ \"additionalProperties\": {}}")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
+    public void test() {
+        //todo PreProcessRegistrationStep test
     }
 }
