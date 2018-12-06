@@ -1,3 +1,5 @@
 databaseChangeLog:
   - include:
       file: db/changelog/auth.sql
+  - include:
+      file: db/changelog/user-contact.sql

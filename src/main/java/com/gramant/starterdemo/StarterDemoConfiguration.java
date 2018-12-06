@@ -5,9 +5,12 @@ import com.gramant.auth.domain.PrivilegeId;
 import com.gramant.auth.domain.PrivilegedRole;
 import com.gramant.auth.domain.RoleId;
 import com.gramant.auth.domain.event.UserCreatedEvent;
+import com.gramant.notification.email.adapters.jdbc.JdbcEmailProvider;
+import com.gramant.notification.email.app.EmailProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
 import java.util.Arrays;
@@ -24,6 +27,11 @@ public class StarterDemoConfiguration {
                 new PrivilegedRole(new RoleId("MANAGER"), Collections.singletonList(new PrivilegeId("EDIT_EMPLOYEES"))),
                 new PrivilegedRole(new RoleId("EMPLOYEE"), Collections.emptyList())
         );
+    }
+
+    @Bean
+    public EmailProvider emailProvider(JdbcTemplate jdbcTemplate) {
+        return new JdbcEmailProvider(jdbcTemplate);
     }
 
     @Bean CustomEventListener customEventListener() {
