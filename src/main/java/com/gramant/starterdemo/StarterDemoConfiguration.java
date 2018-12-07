@@ -6,7 +6,7 @@ import com.gramant.auth.domain.PrivilegedRole;
 import com.gramant.auth.domain.RoleId;
 import com.gramant.auth.domain.event.UserCreatedEvent;
 import com.gramant.notification.email.adapters.jdbc.JdbcEmailProvider;
-import com.gramant.notification.email.app.EmailProvider;
+import com.gramant.notification.email.app.ProvideEmail;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
@@ -30,7 +30,7 @@ public class StarterDemoConfiguration {
     }
 
     @Bean
-    public EmailProvider emailProvider(JdbcTemplate jdbcTemplate) {
+    public ProvideEmail emailProvider(JdbcTemplate jdbcTemplate) {
         return new JdbcEmailProvider(jdbcTemplate);
     }
 
